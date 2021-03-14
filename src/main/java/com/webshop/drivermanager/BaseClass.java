@@ -9,8 +9,12 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 
+/**
+ * Created by Kranthi on 12/Mar/2021.
+ */
 public class BaseClass {
 
 	private final String filePath = ".\\src\\test\\resources\\Configurations\\config.properties";
@@ -55,6 +59,10 @@ public class BaseClass {
 		String browser = prop.getProperty("browser");
 		if (browser != null && browser.equals("chrome")) {
 			System.setProperty("webdriver.chrome.driver", ".\\Drivers\\chromedriver.exe");
+			
+//			ChromeOptions options = new ChromeOptions();
+//			options.setHeadless(true);
+			
 			driver = new ChromeDriver();
 		}
 		else if(browser != null && browser.equals("edge"))

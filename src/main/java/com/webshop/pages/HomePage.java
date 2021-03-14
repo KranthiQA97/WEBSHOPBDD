@@ -1,5 +1,9 @@
 package com.webshop.pages;
 
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -8,12 +12,12 @@ import org.openqa.selenium.support.PageFactory;
 
 /**
  * @author Kranthi
- * @comments Creating the Home Page Web Elements and Action Methods
+ * @description Contains the Home Page Web Elements and Action Methods
  */
 public class HomePage {
-	
+
 	WebDriver driver;
-	
+
 	/**
 	 * @name HomePage
 	 * @param driver
@@ -23,77 +27,93 @@ public class HomePage {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-	
+
 //	###############  Home Page Web Elements starts here ###################
-	
+
 	@FindBy(xpath = "//a[contains(text(),'Log in')]")
-	@CacheLookup WebElement loginLink;
-	
-	@FindBy(xpath = "//h1[contains(text(),'Welcome, Please Sign In!')]")
-	@CacheLookup WebElement welcomeText;
-	
-	@FindBy(css =  "#Email")
-	@CacheLookup WebElement emailTextbox;
-	
-	@FindBy(css =  "#Password")
-	@CacheLookup WebElement passwordTextbox;
-	
-	@FindBy(css =  "input[value='Log in']")
-	@CacheLookup WebElement loginButton;
-	
-	@FindBy(xpath = "//div[@class='header-links']//a[@class='account']")
-	@CacheLookup WebElement accountID;
-	
-	
+	@CacheLookup
+	WebElement loginLink;
+
+	@FindBy(xpath = "//ul[@class='top-menu']//a[contains(.,'Books')]")
+	WebElement booksLink;
+
+	@FindBy(xpath = "//ul[@class='top-menu']//a[contains(.,'Computers')]")
+	@CacheLookup
+	WebElement computersLink;
+
+	@FindBy(xpath = "//ul[@class='top-menu']//a[contains(.,'Electronics')]")
+	@CacheLookup
+	WebElement electronicsLink;
+
+	@FindBy(xpath = "//ul[@class='top-menu']//a[contains(.,'Apparel & Shoes')]")
+	@CacheLookup
+	WebElement apparelShoesLink;
+
+	@FindBy(xpath = "//ul[@class='top-menu']//a[contains(.,'Digital downloads')]")
+	@CacheLookup
+	WebElement digitalDownloadsLink;
+
+	@FindBy(xpath = "//ul[@class='top-menu']//a[contains(.,'Jewelry')]")
+	@CacheLookup
+	WebElement jewelryLink;
+
+	@FindBy(xpath = "//ul[@class='top-menu']//a[contains(.,'Gift Cards')]")
+	@CacheLookup
+	WebElement giftCardsLink;
+
+	@FindBy(xpath = "//input[@value='Add to cart']")
+	@CacheLookup
+	List<WebElement> availableBooks;
+
+	@FindBy(xpath = "//input[@value='Add to cart']/../../../..//div[@class='picture']")
+	@CacheLookup
+	List<WebElement> selectBook;
+
 //	###############  Home Page Action Methods starts here ###################
-	
+
 	/**
 	 * @name clickLoginLink
-	 * @description By using this method we can click the Log in link in the home page
+	 * @description By using this method we can click the Log in link in the home
+	 *              page
 	 */
-	public void clickLoginLink()
-	{
+	public void clickLoginLink() {
 		loginLink.click();
 	}
-	
+
 	/**
-	 * @name getWelcomeText
-	 * @return Welcome Warning error message
-	 * @description
+	 * 
 	 */
-	public String getWelcomeText()
-	{
-		return welcomeText.getText();
+	public void clickBooksLink() {
+		booksLink.click();
 	}
-	
+
 	/**
-	 * @return
+	 * 
 	 */
-	public WebElement enterEmail()
-	{
-		return emailTextbox;
+	public void addFirstBook() {
+		int lastBookIndex = availableBooks.size();
+
+		for (int i = 0; i < lastBookIndex; i++) {
+
+			if (!availableBooks.isEmpty() && i == 0) {
+				availableBooks.get(i).click();
+			}
+		}
 	}
-	
+
 	/**
-	 * @return
+	 * 
 	 */
-	public WebElement enterPassword()
-	{
-		return passwordTextbox;
+	public void selectFirstBook() {
+		int lastBookIndex = selectBook.size();
+
+		for (int i = 0; i < lastBookIndex; i++) {
+
+			if (!selectBook.isEmpty() && i == 0) {
+				selectBook.get(i).click();
+			}
+		}
+
 	}
-	
-	public void clickLoginButton()
-	{
-		loginButton.click();
-	}
-	
-	public String getAccountID()
-	{
-		return accountID.getText();
-	}
-	
-	
-	
-	
 
 }
