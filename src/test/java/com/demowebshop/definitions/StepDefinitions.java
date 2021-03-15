@@ -94,6 +94,50 @@ public class StepDefinitions extends BaseClass {
 	    String subTotal = scp.getSubtotal();
 	    Assert.assertEquals(prop.getProperty("subtotal"), subTotal);
 	}
+	
+	@Then("click on Check out")
+	public void click_on_check_out() {
+		scp.clickTermsCheckBox();
+		scp.clickCheckOutButton();
+	    
+	}
+	@Then("click on address drop down and select a new billing address")
+	public void click_on_address_drop_down_and_select_a_new_billing_address() {
+	    scp.selectNewBillingAddress();
+	}
+	@Then("Click on Continue button")
+	public void click_on_continue_button() {
+	    scp.clickBillingContinueButton();
+	}
+	@Then("click on address drop down and select a new shipping address")
+	public void click_on_address_drop_down_and_select_a_new_shipping_address() {
+	    scp.selectNewShippingAddress();
+	}
+	@Then("click on Continue button and select shipping method")
+	public void click_on_continue_button_and_select_shipping_method() {
+	    scp.clickShippingContinueButton();
+	    scp.clickNextDayAirRadioButton();
+	}
+	@Then("click on payment method and click on continue button")
+	public void click_on_payment_method_and_click_on_continue_button() {
+	    scp.clickCODButton();
+	    scp.clickShippingMethodContinueButton();
+	}
+	@Then("validate the payment method message and click on the continue button")
+	public void validate_the_payment_method_message_and_click_on_the_continue_button() {
+	    String payInfoMsg = scp.getPaymentInfoText();
+	    Assert.assertEquals(prop.getProperty(""),payInfoMsg);
+	}
+	@Then("click on the continue button and validate the order processed success message")
+	public void click_on_the_continue_button_and_validate_the_order_processed_success_message() {
+	    scp.clickPayMetodContinueButton();
+	    scp.getPaymentInfoText();
+	    Assert.assertEquals(prop.getProperty(""), 0);
+	}
+	@Then("click on continue button and click on logout button")
+	public void click_on_continue_button_and_click_on_logout_button() {
+	    
+	}
 
 
 

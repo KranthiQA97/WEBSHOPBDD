@@ -32,6 +32,8 @@ public class WelcomePage {
 	@FindBy(xpath = "//li[@id='topcartlink']//span[contains(.,'Shopping cart')]")
 	WebElement shoppingCartLink;
 	
+	@FindBy(xpath = "//div[@class='header-links']//a[@class='ico-logout']")
+	WebElement logoutButton;
 	
 	
 	
@@ -47,8 +49,16 @@ public class WelcomePage {
 		return accountID.getText();
 	}
 	
+	/**
+	 * 
+	 */
 	public void clickShoppingCartLink()
 	{
 		shoppingCartLink.click();
+	}
+	
+	public void clickLogoutButton()
+	{
+		logoutButton.click();
 	}
 }
