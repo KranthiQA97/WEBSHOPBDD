@@ -111,32 +111,33 @@ public class StepDefinitions extends BaseClass {
 	}
 	@Then("click on address drop down and select a new shipping address")
 	public void click_on_address_drop_down_and_select_a_new_shipping_address() {
-	    scp.selectNewShippingAddress();
+//	    scp.selectNewShippingAddress();
+		scp.clickShippingContinueButton();
 	}
 	@Then("click on Continue button and select shipping method")
 	public void click_on_continue_button_and_select_shipping_method() {
-	    scp.clickShippingContinueButton();
 	    scp.clickNextDayAirRadioButton();
+	    scp.clickShippingMethodContinueButton();
 	}
 	@Then("click on payment method and click on continue button")
 	public void click_on_payment_method_and_click_on_continue_button() {
 	    scp.clickCODButton();
-	    scp.clickShippingMethodContinueButton();
+	    scp.clickPayMetodContinueButton();
 	}
 	@Then("validate the payment method message and click on the continue button")
 	public void validate_the_payment_method_message_and_click_on_the_continue_button() {
 	    String payInfoMsg = scp.getPaymentInfoText();
-	    Assert.assertEquals(prop.getProperty(""),payInfoMsg);
+	    Assert.assertEquals(prop.getProperty("paymentinfo"),payInfoMsg);
 	}
 	@Then("click on the continue button and validate the order processed success message")
 	public void click_on_the_continue_button_and_validate_the_order_processed_success_message() {
-	    scp.clickPayMetodContinueButton();
-	    scp.getPaymentInfoText();
-	    Assert.assertEquals(prop.getProperty(""), 0);
+	    scp.clickPayInfoContinueButton();
 	}
 	@Then("click on continue button and click on logout button")
 	public void click_on_continue_button_and_click_on_logout_button() {
-	    
+	    scp.clickConfirmOrderConfirmButton();
+	    String orderSuccMsg = scp.getOrderConfirmSuccessMsg();
+	    Assert.assertEquals(prop.getProperty("orderprocessedtext"),orderSuccMsg);
 	}
 
 

@@ -41,25 +41,37 @@ public class ShoppingCartPage {
 	@FindBy(css = "input[name='termsofservice']")
 	WebElement termsCheckBox;
 	
-	@FindBy(css = "select#billing-address-select")
-	WebElement billingAddress;
+	@FindBy(id = "BillingNewAddress_CountryId")
+	WebElement billingAddressCountry;
+	
+	@FindBy(xpath="//input[@id='BillingNewAddress_City']")
+	WebElement city;
+	
+	@FindBy(xpath="//input[@id='BillingNewAddress_Address1']")
+	WebElement addressLine1;
+	
+	@FindBy(xpath="//input[@id='BillingNewAddress_ZipPostalCode']")
+	WebElement zipCode;
+	
+	@FindBy(xpath="//input[@id='BillingNewAddress_PhoneNumber']")
+	WebElement phoneNumber;
 	
 	@FindBy(xpath = "//select[@id='shipping-address-select']")
 	WebElement shippingAddress;
 	
-	@FindBy(xpath = "//div[@id='billing-buttons-container']//input[@title='Continue']")
+	@FindBy(xpath = "//div[@id='billing-buttons-container']//input")
 	WebElement billingContinueButton;
 	
-	@FindBy(xpath = "//*[@id='shipping-buttons-container']/input")
-	WebElement shippingContinueButton;
+	@FindBy(xpath = "//div[@id='shipping-buttons-container']//input")
+	WebElement shippingAddressContinueButton;
 	
-	@FindBy(xpath = "//*[@id='shipping-method-buttons-container']/input")
+	@FindBy(xpath = "//div[@id='shipping-method-buttons-container']//input")
 	WebElement shippingMethodContinueButton;
 	
-	@FindBy(xpath = "//*[@id='payment-method-buttons-container']/input")
+	@FindBy(xpath = "//div[@id='payment-method-buttons-container']//input")
 	WebElement payMetodContinueButton;
 	
-	@FindBy(xpath = "//*[@id='payment-info-buttons-container']/input")
+	@FindBy(xpath = "//div[@id='payment-info-buttons-container']//input")
 	WebElement payInfoContinueButton;
 	
 	@FindBy(xpath = "//input[@id='shippingoption_1']")
@@ -71,8 +83,11 @@ public class ShoppingCartPage {
 	@FindBy(xpath = "//h2[contains(text(),'Payment information')]/../..//td/p")
 	WebElement paymentInfoMsg;
 	
-	@FindBy(xpath = "//*[@id='confirm-order-buttons-container']/input")
+	@FindBy(xpath = "//div[@id='confirm-order-buttons-container']//input")
 	WebElement orderConfirmButton;
+	
+	@FindBy(xpath="//div[@class='section order-completed']//strong")
+	WebElement orderConfirmSuccessMsg;
 	
 	
 	
@@ -141,8 +156,13 @@ public class ShoppingCartPage {
 	 */
 	public void selectNewBillingAddress()
 	{
-		Select address = new Select(billingAddress);
-		address.selectByIndex(2);
+		Select address = new Select(billingAddressCountry);
+		address.selectByIndex(0);
+//		city.sendKeys("Toronto");
+//		addressLine1.sendKeys("957 Eglinton Avenue");
+//		zipCode.sendKeys("M4P 1A6");
+//		phoneNumber.sendKeys("111111111");
+		
 	}
 	
 	/**
@@ -151,7 +171,7 @@ public class ShoppingCartPage {
 	public void selectNewShippingAddress()
 	{
 		Select address = new Select(shippingAddress);
-		address.selectByIndex(2);
+		address.selectByValue("1896248");
 	}
 	
 	/**
@@ -167,7 +187,7 @@ public class ShoppingCartPage {
 	 */
 	public void clickShippingContinueButton()
 	{
-		shippingContinueButton.click();
+		shippingAddressContinueButton.click();
 	}
 	
 	/**
@@ -208,6 +228,19 @@ public class ShoppingCartPage {
 	public String getPaymentInfoText()
 	{
 		return paymentInfoMsg.getText();
+	}
+
+	public void clickPayInfoContinueButton() {
+		payInfoContinueButton.click();
+	}
+
+	public void clickConfirmOrderConfirmButton() {
+		orderConfirmButton.click();
+	}
+	
+	public String getOrderConfirmSuccessMsg()
+	{
+		return orderConfirmSuccessMsg.getText();
 	}
 	
 	
