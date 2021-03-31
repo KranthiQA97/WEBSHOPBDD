@@ -8,7 +8,7 @@ import io.cucumber.junit.CucumberOptions;
 @RunWith(Cucumber.class)
 @CucumberOptions(
 		features = { "Features/" }, 
-		glue = {"com.demowebshop.definitions" }, 
+		glue = {"com.demowebshop.definitions" ,"com.demowebshop.hooks"}, 
 		dryRun = false, 
 		monochrome = true, 
 		plugin = { "pretty",

@@ -79,7 +79,10 @@ public class BaseClass {
 	
 	
 	
-	
+	public static void tearDriver()
+	{
+		driver.quit();
+	}
 	
 	
 	
