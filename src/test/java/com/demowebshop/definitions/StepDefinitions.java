@@ -13,6 +13,10 @@ import com.webshop.pages.WelcomePage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
+/**
+ * @author Kranthi
+ *
+ */
 public class StepDefinitions extends BaseClass {
 	public static WebDriver driver;
 	public static HomePage hp;
